@@ -115,7 +115,12 @@ const create = (request, response) => {
     updatePosts(newPosts);
 
     // feedback
-    response.send(`Post inviato correttamente`)
+    if (request.accepts('html')) {
+        response.send('<h1>Post inviato correttamente</h1>');
+    } else {
+        response.status(406).send('Not Acceptable: Accept header must include "text/html"');
+    }
+
 }
 
 const destroy = (request, response) => {

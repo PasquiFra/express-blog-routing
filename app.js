@@ -8,13 +8,11 @@ const port = 3000;
 
 // import dei router
 const blogRouter = require("./routers/blogRouter.js");
+const docsRouter = require("./routers/docs.js");
 
 // Import dei middlewares:
-// Logger delle rotte in cui si entra
 const routersLogger = require("./middlewares/routersLogger.js")
-// middleware delle rotte non consentite/inesistenti
 const routeNotFound = require("./middlewares/routeNotFound.js")
-//
 const errorDetector = require("./middlewares/errorsDetector.js");
 
 //aggiungo il middleware che si occupa della cartella public
@@ -42,6 +40,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/posts', blogRouter);
+app.use('/docs', docsRouter);
 
 //? SE la rotta richiesta non è settata restituisco un errore 
 app.use(routeNotFound);
